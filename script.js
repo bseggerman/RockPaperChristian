@@ -23,21 +23,47 @@ add score to winner of round
 games stops after player or random gets to 3
 
 */
-let aiChoice;
-let playerChoice;
-let options = ["Neato", "Rock", "Christian", "Paper"];
+
+let computerScore = 0;
+let humanScore = 0;
+
+
 
 function getAiChoice() {
-    let aiChoice = Math.floor(Math.random() * 3) + 1;
-    return options[(aiChoice)];
+    const options = ["rock", "christian", "paper"];
+
+    const randomOption = Math.floor(Math.random() * options.length);
+
+    const randomPick = options[randomOption];
+
+    return randomPick;
 }
-console.log(getAiChoice());
+
 function getPlayerChoice() {
-    let playerChoice = prompt("Make your choice.")
+    let playerChoice = prompt("Rock, Paper or Christian. Make your choice.")
     return playerChoice;
 }
 
-let aiScore = 0;
-let playerScore = 0;
+function playRound(humanChoice, computerChoice) {
 
-console.log(getPlayerChoice());
+    humanChoice = humanChoice.toLowerCase();
+
+    if (humanChoice === computerChoice) {
+        console.log("It's a tie. Choose again.");
+    } 
+    
+    else if (humanChoice == "rock" && computerChoice == "christian" || humanChoice == "christian" && computerChoice == "paper" || humanChoice == "paper" && computerChoice == "rock") {
+        console.log("You win!");
+    } 
+    
+    else {
+        console.log("You lose!");
+    }
+  }
+  
+  const humanSelection = getPlayerChoice();
+  const computerSelection = getAiChoice();
+  
+  console.log(getAiChoice());
+
+  playRound(humanSelection, computerSelection);
